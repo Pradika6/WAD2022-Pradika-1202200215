@@ -8,10 +8,11 @@
         <?php
             $nama = "Pradika_1202200215";
             date_default_timezone_set('GMT');
-            $tgl = $_POST['date'] . " " . $_POST['time'];
+            $tgl = $_POST['date'];
+            $time = $_POST['time'];
             $durasi = $_POST['durasi'];
-            $ci = date("d-m-Y H:i", strtotime($tgl));
-            $co = date("d-m-Y H:i", (strtotime($tgl) + $durasi));
+            $ci = date("d-m-Y H:i", strtotime("$tgl $time"));
+            $co = date('d-m-y H:i', strtotime($durasi . " " . "days", strtotime($ci)));
             $type = $_POST['car'];
             $hp = $_POST['nohp'];
             $total = 0;
@@ -85,7 +86,7 @@
                                 ?>
                             </ul>
                         </td>
-                        <td> $ <?= $total ?></td>
+                        <td>Rp. <?= $total ?></td>
                     </tr>
                 </table>
             </div>
