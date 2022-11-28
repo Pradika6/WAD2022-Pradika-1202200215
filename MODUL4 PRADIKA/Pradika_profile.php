@@ -9,7 +9,7 @@
 
   }else{
     $id=$_SESSION["id"];
-    $result=mysqli_query($conn, "SELECT * FROM wad_modul4_users WHERE id = '$id'");
+    $result=mysqli_query($connect, "SELECT * FROM wad_modul4_users WHERE id = '$id'");
     $row =mysqli_fetch_assoc($result);
     $nama=$row["nama"];
 
@@ -139,6 +139,17 @@
                                  <a href="Home-Pradika.php" class="btn btn-danger" style="width:140px">Cancel</a></Center>
                               </form>       
                       </div>
+                        <div class="background">
+                            <select name="navbarNav" class="form-control", id="">
+                                <?php
+                                    $colors = array('#4e79a0' => 'Biru', '#75b14a' => 'Hijau', '#d06353' => 'Merah' );
+                                    foreach ($colors as $name => $values) {
+                                        $selected = $name == @$_POST['navbarNav'] ? 'SELECTED="SELECTED"' : '';
+                                        echo '<option value= "' . $name . '"' . $selected . '>' . $value . '</option>';    
+                                    }
+                                ?>
+                            </select>
+                        </div>        
                   </div> 
               </div>
           </div>

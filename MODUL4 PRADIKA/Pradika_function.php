@@ -1,9 +1,9 @@
 <?php
-$conn= mysqli_connect("localhost:3307","root","","modul4");
+require  "connector.php";
 
 function query($query){
-    global $conn;
-    $result =mysqli_query($conn,$query);
+    global $connect;
+    $result =mysqli_query($connect,$query);
     $rows=[];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[]=$row;
@@ -13,16 +13,16 @@ function query($query){
 
 
 function registrasi($data){
-    global $conn;
+    global $connect;
 
     $nama=stripcslashes($data["nama"]);
-    $email=mysqli_real_escape_string($conn,$data["email"]);
+    $email=mysqli_real_escape_string($connect,$data["email"]);
     $no_hp=strtolower(stripcslashes($data["no_hp"]));
-    $password=mysqli_real_escape_string($conn,$data["password"]);
-    $password2=mysqli_real_escape_string($conn,$data["password2"]);
+    $password=mysqli_real_escape_string($connect,$data["password"]);
+    $password2=mysqli_real_escape_string($connect,$data["password2"]);
 
             //cek email tersedia
-    $result= mysqli_query($conn,"SELECT email FROM wad_modul4_users where email='$email'");
+    $result= mysqli_query($connect,"SELECT email FROM wad_modul4_users where email='$email'");
     if(mysqli_fetch_assoc($result)){
         echo "<script>
                 alert('Email sudah terdaftar!');
@@ -47,15 +47,15 @@ function registrasi($data){
    
     //input ke database
     
-    mysqli_query($conn,"INSERT INTO wad_modul4_users (id,nama,email,password,no_hp) VALUES('','$nama','$email','$password','$no_hp')");
+    mysqli_query($connect,"INSERT INTO wad_modul4_users (id,nama,email,password,no_hp) VALUES('','$nama','$email','$password','$no_hp')");
     header("location:Pradika_login.php");
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($connect);
 }
 
 function ubahuser($data){
  
-	global $conn;
+	global $connect;
     $id=$data["id"];
 	$nama= $data['nama'];
     $no_hp = $data['no_hp'];
@@ -77,8 +77,8 @@ function ubahuser($data){
     $password= password_hash($password,PASSWORD_DEFAULT);
    
 	
-		mysqli_query($conn, "UPDATE wad_modul4_users SET nama='$nama',  password='$password', no_hp='$no_hp' WHERE id = '$id'");
-		return mysqli_affected_rows($conn);
+		mysqli_query($connect, "UPDATE wad_modul4_users SET nama='$nama',  password='$password', no_hp='$no_hp' WHERE id = '$id'");
+		return mysqli_affected_rows($connect);
    
 }
 

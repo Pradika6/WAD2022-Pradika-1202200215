@@ -8,7 +8,7 @@
         $key = $_COOKIE['key'];
 
         // ambil username berdasarkan id
-        $result = mysqli_query($conn,"SELECT email FROM wad_modul4_users WHERE id = '$id'");
+        $result = mysqli_query($connect,"SELECT email FROM wad_modul4_users WHERE id = '$id'");
         $row = mysqli_fetch_assoc($result);
 
         // cek cookie dan username
@@ -30,7 +30,7 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $result = mysqli_query($conn, "SELECT * FROM wad_modul4_users WHERE email = '$email'");
+        $result = mysqli_query($connect, "SELECT * FROM wad_modul4_users WHERE email = '$email'");
 
         // cek username
         if (mysqli_num_rows($result) === 1) {

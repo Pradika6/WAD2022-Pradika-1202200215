@@ -1,3 +1,10 @@
+<?php
+include 'connector.php';
+      $result=mysqli_query($connect, "SELECT * FROM wad_modul4_users WHERE id = '$id'");
+      $row =mysqli_fetch_assoc($result);
+      $nama=$row["nama"];
+?>
+
 <!doctype html>
 <html lang="en">
 <head>

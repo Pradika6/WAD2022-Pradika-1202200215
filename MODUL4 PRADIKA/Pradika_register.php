@@ -8,7 +8,7 @@ if (isset($_POST["daftar"])){
                 alert('akun berhasil di daftarkan!'); 
             </script>";
     }else
-    echo mysqli_error($conn);
+    echo mysqli_error($connect);
 }
 
 ?>

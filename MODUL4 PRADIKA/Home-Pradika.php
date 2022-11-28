@@ -12,7 +12,7 @@ if (!isset($_SESSION["login"])) {
        }
  
 
-  $result=mysqli_query($conn, "SELECT * FROM wad_modul4_users WHERE id = '$id'");
+  $result=mysqli_query($connect, "SELECT * FROM wad_modul4_users WHERE id = '$id'");
   $row =mysqli_fetch_assoc($result);
   $nama=$row["nama"];
 

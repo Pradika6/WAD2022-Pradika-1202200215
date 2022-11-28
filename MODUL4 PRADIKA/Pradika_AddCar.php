@@ -5,7 +5,8 @@
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
 
-    $nama = "Pradika_1202200215";
+    $pemilik = "Pradika_1202200215";
+    
 
     if(isset($_POST['submit'])){
         $id_mobil = $_POST['id_mobil'];
@@ -31,6 +32,9 @@
             header("location:Pradika_MyItem.php");
         }
     }  
+    $result=mysqli_query($connect, "SELECT * FROM wad_modul4_users WHERE id = '$id'");
+    $row =mysqli_fetch_assoc($result);
+    $nama=$row["nama"];
 ?>
 <!doctype html>
 <html lang="en">
@@ -63,7 +67,7 @@
                     </li>
                     <li class="dropdown ">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="far fa-user"></i> &nbsp; <?= $nama; ?>
+                        <i class="far fa-user"></i> &nbsp; <?= $nama ?>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Pradika_Profile.php">Profile</a></li>
@@ -85,7 +89,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="nama_pemilik" class="form-label fw-bold">Nama Pemilik :</label>
-                    <input type="text" class="form-control" id="nama_pemilik" name="nama_pemilik" value="<?= $nama ?>" readonly>
+                    <input type="text" class="form-control" id="nama_pemilik" name="nama_pemilik" value="<?= $pemilik ?>" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="merk_mobil" class="form-label fw-bold">Merk :</label>
